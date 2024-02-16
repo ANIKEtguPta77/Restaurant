@@ -12,7 +12,7 @@ const Nav = () => {
 
   const {data:session}=useSession();
 
-  console.log(session)
+  
   const [providers,setProviders]=useState(null);
   const [toggleDropdown,setToggleDropdown]=useState(false);
 
@@ -37,14 +37,14 @@ const Nav = () => {
                 className="object-contain"
 
             />
-            <p className="logo_text">Promptopia</p>
+            <p className="logo_text">Restuarent Name</p>
         </Link>
         {/*Desktop Navigation*/}
         <div className="sm:flex hidden">
             {session?.user ?(
                 <div className="flex gap-3 md:gap-5">
-                    <Link href="/create-prompt" className="black_btn">
-                        Create Post
+                    <Link href="/update-menu" className="black_btn">
+                        Update
                     </Link>
 
                     <button type="button" onClick={signOut}
@@ -106,7 +106,7 @@ const Nav = () => {
                     className="dropdown_link"
                     onClick={()=>setToggleDropdown(false)}
                     >
-                        Create Prompt
+                        Update
                     </Link>
                     <button
                     type="button"

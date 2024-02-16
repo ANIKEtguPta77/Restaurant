@@ -7,16 +7,19 @@ const MenuSchema=new Schema({
         type:Schema.Types.ObjectId,
         ref:'User',
     },
-    prompt:{
+    itemname:{
         type:String,
-        required:[true,'Prompt is required']
+        required:[true,'Item Name is required']
     },
-    tag:{
+    itemprice:{
         type:String,
-        required:[true,'Tag is required']
+        required:[true,'Price is required']
+    },
+    available:{
+        type:Boolean
     }
 });
 
-const Menu=models.Prompt || model('Menu',MenuSchema)
+const Menu=models.Menu || model('Menu',MenuSchema)
 
 export default Menu

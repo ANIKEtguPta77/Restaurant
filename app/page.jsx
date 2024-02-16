@@ -1,4 +1,4 @@
-
+import Menu from "@components/Menu"
 
 const Home = () => {
   return (
@@ -12,7 +12,7 @@ const Home = () => {
         <p className="desc text-center">
             How are you
         </p>
-        
+        <Menu type="show"/>
     </section>
   )
 }
