@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,8 +9,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        satoshi: ['Satoshi', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
+        'satoshi': ['Satoshi', 'sans-serif'],
+        'inter': ['Inter', 'sans-serif'],
+        'anta':['Anta','sans-serif'],
+        'fred': ['Fredoka', 'sans-serif'],
+        'space': ['Space Grotesk', 'sans-serif'],
+        'kal':[ "Kalnia", 'serif']
       },
       colors: {
         'primary-orange': '#FF5722',

@@ -17,6 +17,10 @@ const MenuSchema=new Schema({
     },
     available:{
         type:Boolean
+    },
+    category:{
+        type:String,
+        required:[true,'Category is Required']
     }
 });
 

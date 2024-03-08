@@ -3,7 +3,7 @@ import Menu from "@models/menu";
 
 
 export const POST=async(req,res)=>{
-    const {userID,itemname,itemprice,available}=await req.json();
+    const {userID,itemname,itemprice,available,category}=await req.json();
 
     
     try{
@@ -13,7 +13,8 @@ export const POST=async(req,res)=>{
             creator:userID,
             itemname,
             itemprice,
-            available
+            available,
+            category,
         })
 
         await newItem.save();
