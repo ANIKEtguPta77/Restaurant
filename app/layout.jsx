@@ -1,5 +1,7 @@
 import '@styles/globals.css';
-
+import '@styles/cart.css';
+import '@styles/button.css';
+import '@styles/pop.css';
 import Nav from '@components/Nav';
 import Provider from '@components/Provider';
 

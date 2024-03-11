@@ -21,6 +21,10 @@ const MenuSchema=new Schema({
     category:{
         type:String,
         required:[true,'Category is Required']
+    },
+    imageurl:{
+        type:String,
+        required:[true,'Item link is Required']
     }
 });
 

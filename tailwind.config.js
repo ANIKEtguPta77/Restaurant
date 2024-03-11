@@ -14,7 +14,8 @@ module.exports = {
         'anta':['Anta','sans-serif'],
         'fred': ['Fredoka', 'sans-serif'],
         'space': ['Space Grotesk', 'sans-serif'],
-        'kal':[ "Kalnia", 'serif']
+        'kal':[ "Kalnia", 'serif'],
+        'dance':["Dancing Script","cursive"],
       },
       colors: {
         'primary-orange': '#FF5722',

@@ -3,18 +3,20 @@ import Menu from "@models/menu";
 
 
 export const POST=async(req,res)=>{
-    const {userID,itemname,itemprice,available,category}=await req.json();
+    const {userID,itemname,itemprice,available,category,imageurl}=await req.json();
 
     
     try{
         await connectToDb();
 
+        
         const newItem=new Menu({
             creator:userID,
             itemname,
             itemprice,
             available,
             category,
+            imageurl,
         })
 
         await newItem.save();

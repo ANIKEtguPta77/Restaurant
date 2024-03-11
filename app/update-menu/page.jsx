@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
-import Menu from '@components/Menu'
+import Menu from '@components/Menu1'
 import Loading from '@components/Loading'
 
 const page = () => {
@@ -23,6 +23,7 @@ const page = () => {
     itemprice: '',
     available: true,
     category: '',
+    imageurl:'',
   })
 
   const router = useRouter()
@@ -30,6 +31,7 @@ const page = () => {
 
   const createItem = async (e) => {
 
+    
     setSubmtting(true);
 
 
@@ -41,7 +43,8 @@ const page = () => {
           userId: session?.user.id,
           itemprice: item.itemprice,
           available: item.available,
-          category:item.category
+          category:item.category,
+          imageurl:item.imageurl
         })
       })
 
@@ -50,7 +53,8 @@ const page = () => {
           itemname: '',
           itemprice: '',
           available: true,
-          category:''
+          category:'',
+          imageurl:'',
         })
         router.push('/update-menu');
       }
@@ -64,11 +68,7 @@ const page = () => {
 
   }
 
-  const Optionchange=((event)=>{
-
-      item.category=event.target.value
-  })
-
+  
 
   return (
     <>
@@ -105,14 +105,33 @@ const page = () => {
               </input>
             </label>
             
-            <label for="cars">Choose a car:</label>
+            <label for="cars">Choose a Category:</label>
 
-            <select id="cars" name="cars" onChange={Optionchange} value={item.category}>
+            <select id="cars" name="cars" onChange={(e)=>setItem({
+              ...item,
+              category:e.target.value
+            })} value={item.category}>
               <option value="">None</option>
               <option value="Bread">Bread</option>
               <option value="Dal">Dal</option>
               <option value="Gravy">Gravy</option>
+              <option value="Chicken">Chicken</option>
+              <option value="Sweet">Sweet</option>
             </select>
+
+            <label>
+              <span>
+                New Item Image Url:
+              </span>
+              <input  value={item.imageurl} placeholder='Link' required
+                onChange={(e) => setItem({
+                  ...item,
+                  imageurl: e.target.value
+                })}>
+
+              </input>
+            </label>
+
            
             <div className='flex-end mx-3 mb-5 gap-4'>
               <Link href="/" className='text-gray-500 text-sm'>
