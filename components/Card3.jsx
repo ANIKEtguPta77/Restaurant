@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/cart.css";
+
 
 const Card3 = ({itemname,itemprice}) => {
   return (

@@ -166,6 +166,7 @@ const page = () => {
                     setConfirms={setConfirms}
                     count={count}
                     items = {items}
+                    type="cust"
                   />
                 </div>
               ) : (

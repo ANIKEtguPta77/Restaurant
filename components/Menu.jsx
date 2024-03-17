@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-// import "../../styles/button.css";
-// import "../../styles/pop.css";
+
 import Cart from "../app/customer/cart/page";
 import { useRouter } from "next/navigation";
 import { Card } from "./Card";
@@ -18,6 +17,7 @@ const Menu = ({
   setConfirms,
   count,
   items,
+  type
 }) => {
   const router = useRouter();
   const [showIndex, setShowIndex] = useState(null);
@@ -27,6 +27,52 @@ const Menu = ({
   const handleToggle = () => {
     setToggle(!toggle);
   };
+
+  const handleDelete = async (item) => {
+    const isconfirmed = confirm(`Are you sure you want to delete ${item.itemname}`);
+
+
+    if (isconfirmed) {
+      try {
+        await fetch(`/api/item/${item._id}`, {
+          method: 'DELETE',
+
+        });
+
+        const filteredPosts = menuitems.filter((p) =>
+          p._id !== item._id
+        );
+
+        setMenuItems(filteredPosts);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+
+  const handleAvailable = async (item) => {
+    const isconfirmed = confirm(`Are you sure you want to make ${item.itemname} ${item.available == true ? 'Unavailable' : 'Available'}`)
+
+    if (isconfirmed) {
+      try {
+        const response = await fetch(`/api/item/${item._id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({
+            available: !item.available
+          })
+        })
+
+        if (response.ok) {
+          location.reload()
+          router.push('/update-menu');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+  }
 
   return (
     <div className="w-full">
@@ -43,9 +89,11 @@ const Menu = ({
               <Option food_item={food_item} />
             </div>
           )}
+          {type!="update"&&
           <div className="flex justify-center p-6 rounded-xl bg-gradient-to-r from-green-100 to-red-100 text-black text-8xl font-dance">
             Menu Items
           </div>
+          }
           <br></br>
           <div className="p-6 rounded-xl">
             {food_item.map((item1, index1) => (
@@ -64,8 +112,12 @@ const Menu = ({
                           itemprice={item.itemprice}
                           Counterplus={Counterplus}
                           Counterminus={Counterminus}
+                          available={item.available}
                           count={count}
                           index2={index2}
+                          type={type}
+                          handleDelete={()=>handleDelete && handleDelete(item)}
+                         handleAvailable={()=>handleAvailable && handleAvailable(item)}
                         />
                       </div>
                     ) : null

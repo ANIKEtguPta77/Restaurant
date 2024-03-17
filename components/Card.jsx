@@ -1,14 +1,22 @@
 "use client";
 import React from "react";
+import {motion} from "framer-motion"
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 
 export const Card = ({
   itemprice,
   itemname,
+  available,
   url,
   Counterplus,
   Counterminus,
   count,
   index2,
+  type,
+  handleDelete,
+  handleAvailable
 }) => {
   return (
     <div className="w-full bg-white rounded-lg md:flex justify-between items-center p-4 shadow-xl">
@@ -39,6 +47,7 @@ export const Card = ({
           </div>
         </div>
       </div>
+      {type=="cust"&&
       <div className="flex  md:ml-0 ml-2">
         <button
           className="px-2 hover:bg-red-400 hover:text-white font-bold rounded-md w-8 border border-red-700 md:mx-4 hover:text-2xl"
@@ -55,7 +64,30 @@ export const Card = ({
           {" "}
           +{" "}
         </button>
+      </div>}
+      {type=="rest" &&
+      <div className="flex flex-row sm:flex-col m-4 sm:m-10 justify-center">
+          <p className="font-anta sm:ml-0 pr-10">Status</p>
+          <motion.div className={`${available?"bg-green-600":"bg-red-600"} w-10 h-10 rounded-xl`}
+          >
+
+          </motion.div>
+          </div>
+      }
+     
+      {type=="update" && <div className="flex flex-row m-5 justify-between w-full sm:w-1/3">
+      
+      <motion.div whileHover={{scale:1.2,rotate: [0, -10, 10, -10, 0], transition: { duration: 0.3 }}}>
+      <DeleteOutlineIcon onClick={handleDelete} className="text-red-600 text-4xl cursor-pointer" style={{ fontSize: '34px' }}/>
+      </motion.div>
+      <motion.div whileHover={{scale:1.05}}>
+      <FormControlLabel
+        control={<Switch checked={available} onChange={handleAvailable} />}
+        label={available?(<span className="font-fred text-green-500 text-xl">Available</span>):(<span className="font-fred text-red-500 text-xl">Unavailable</span>)} 
+      />
+      </motion.div>
       </div>
+      }
     </div>
   );
 };

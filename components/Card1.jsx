@@ -18,8 +18,8 @@ export const Card1 = ({ itemprice, itemname, url, buy }) => {
               <span className="text-yellow-600">★★★</span>★★
             </p>
             <p className="font-dance text-4xl font-bold p-2">{itemname}</p>
-            <p className="font-kal text-4xl font-bold text-black p-2">
-              {itemprice}
+            <p className="font-kal text-xl font-bold text-black p-2">
+             ₹ {itemprice}
             </p>
           </div>
         </div>

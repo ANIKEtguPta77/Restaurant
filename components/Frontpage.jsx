@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import "../styles/button.css";
-// import "../../styles/pop.css";
 import Cart from "../app/customer/cart/page";
 import { useRouter } from "next/navigation";
 import { Card1 } from "./Card1";

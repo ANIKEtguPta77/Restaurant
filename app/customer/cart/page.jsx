@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import "../../../styles/cart.css";
 import { useRouter } from "next/navigation";
 import Card3 from "../../../components/Card3";
+import {loadStripe} from '@stripe/stripe-js';
 
 const page = ({ confirmOrder, setConfirms, items }) => {
   const router = useRouter();
@@ -10,6 +11,51 @@ const page = ({ confirmOrder, setConfirms, items }) => {
     console.log("Hi");
     setConfirms(false);
   };
+
+  const [amount,setamount]=useState(100);
+
+
+  const handlePayment=async()=>
+  {
+
+    const stripe = await loadStripe("ENTER YOUR PUBLISHABLE KEY");
+    try {
+      const response = await fetch('api/payment', {
+        method: 'POST',
+        body: JSON.stringify({
+          amount: amount,
+          name:'Aniket',
+          phonenumber:'94242342223',
+          email:'aniket.gupta20033@gmail.com'
+         
+        })
+      })
+
+
+      // const session = await response.json();
+
+      //   const result = stripe.redirectToCheckout({
+      //       sessionId:session.id
+      //   });
+        
+      //   if(result.error){
+      //       console.log(result.error);
+      //   }
+
+
+      if (response.ok) {
+        setamount({
+           amount:0
+        })
+        router.push('/customer');
+      }
+    }
+    catch (error) {
+      console.log(error)
+    } 
+
+  }
+
   return (
     <div className="parent mt-10 w-full">
       <div id="header">
@@ -37,7 +83,7 @@ const page = ({ confirmOrder, setConfirms, items }) => {
           </div>
         </div>
 
-        <button className="button">—Placed Order—</button>
+        <button className="button" onClick={handlePayment}>—Placed Order—</button>
       </div>
     </div>
   );
