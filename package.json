@@ -17,14 +17,11 @@
     "framer-motion": "^10.6.0",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.1",
-<<<<<<< HEAD
     "next": "14.1.0",
     "next-auth": "^4.24.5",
     "node": "^21.7.1",
-=======
     "next": "13.3.4",
     "next-auth": "^4.22.1",
->>>>>>> 800bcb0c9b676ce6b44367444a1e6e5e4dcb7e09
     "nodemailer": "^6.9.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
