@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "../../../styles/cart.css";
 import { useRouter } from "next/navigation";
-import Card3 from "../../../components/Cardplace";
+import Card3 from "../../../components/Card3";
 import Oops from "@components/Oops";
 import Lottie from "lottie-react";
 import animationData from "../../../components/Animation - 1710692268578.json";
