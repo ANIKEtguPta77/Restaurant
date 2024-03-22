@@ -1,31 +1,39 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
+import { duration } from "@mui/material";
 
 export const Card1 = ({ itemprice, itemname, url, buy }) => {
   return (
-    <div className="w-full bg-white rounded-lg p-4 shadow-xl shadow-slate-400">
+    <div className="w-full bg-white rounded-lg p-6 shadow-xl shadow-slate-400">
       <div className="lg:flex w-full">
-        <div className="flex w-full">
-          <div className="items-center flex w-2/5">
+        <div className="md:flex w-full">
+          <motion.div
+            className="md:items-center flex md:w-2/5 w-full justify-center md:justify-start"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.9 } }}
+          >
             <img
-              src="https://media.istockphoto.com/id/608005280/photo/mutton-rogan-josh-mutton-curry-indian-cuisine.jpg?s=612x612&w=0&k=20&c=F-sjeDrKuwqVh51seSkRV7Lng8ujiObyJPDxLvz3oOM="
-              className="shadow-xl rounded-full h-32"
+              src={url}
+              className="shadow-xl w-48 md:w-40 h-40 md:h-32  rounded-3xl border border-zinc-900 border-b-8"
               alt="avatar"
             ></img>
-          </div>
-          <div className="w-3/5">
-            <p className="text-2xl p-2">
+          </motion.div>
+          <div className="w-full">
+            <p className="text-2xl p-2 flex md:justify-end justify-center lg:justify-start">
               <span className="text-yellow-600">★★★</span>★★
             </p>
-            <p className="font-dance text-4xl font-bold p-2">{itemname}</p>
-            <p className="font-kal text-xl font-bold text-black p-2">
-             ₹ {itemprice}
+            <p className="font-dance text-4xl font-bold p-2 flex md:justify-end justify-center lg:justify-start">
+              {itemname}
+            </p>
+            <p className="font-dance text-4xl font-bold text-black p-2 flex md:justify-end justify-center lg:justify-start">
+              ₹{itemprice}
             </p>
           </div>
         </div>
         <div className="flex justify-center lg:w-1/5 w-full">
           <button onClick={buy} className="btn first">
-            — Try it ones —
+            — Try ones —
           </button>
         </div>
       </div>
