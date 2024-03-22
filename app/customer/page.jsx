@@ -61,7 +61,7 @@ const page = () => {
       [index]: Math.max((prevCounts[index] || 0) - 1, 0),
     }));
   };
-
+  const [foodcount, setFoodcount] = useState(0);
   const router = useRouter();
 
   const [newItem, setNewItem] = useState([]);
@@ -83,8 +83,16 @@ const page = () => {
   // };
 
   useEffect(() => {
+    let val = 0;
+    for (let key in count) {
+      if (!isNaN(key)) {
+        const j = parseInt(key);
+        val += count[j];
+      }
+    }
     console.log(count);
     console.log(items);
+    setFoodcount(val);
   }, [count, items]);
 
   const submitOrder = () => {
@@ -95,7 +103,6 @@ const page = () => {
     for (let key in count) {
       if (!isNaN(key)) {
         const j = parseInt(key);
-        console.log(menuitems[j].itemname, j, count[j]);
         if (count[j] > 0) {
           newItems.push({
             itemName: menuitems[j].itemname,
@@ -129,10 +136,15 @@ const page = () => {
         }),
       });
       if (response.ok) {
-        router.push("/customer");
+        setItems(0);
+        setFirst(!first);
+        setCheck(!check);
+        console.log("Order Placed");
+      } else {
+        console.log("Error: Unexpected response status", response.status);
       }
     } catch (error) {
-      console.log("Error", error);
+      console.log("Error occurred during fetch:", error);
     }
     setConfirms(false);
   };
@@ -165,7 +177,9 @@ const page = () => {
                     confirms={confirms}
                     setConfirms={setConfirms}
                     count={count}
-                    items = {items}
+                    items={items}
+                    foodcount={foodcount}
+                    buy={buy}
                     type="cust"
                   />
                 </div>
@@ -178,7 +192,7 @@ const page = () => {
           )}
         </div>
       ) : (
-        <Frontpage menuitems={menuitems} buy={buy}/>
+        <Frontpage menuitems={menuitems} buy={buy} />
       )}
     </>
   );
