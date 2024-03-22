@@ -3,19 +3,19 @@ import React from "react";
 const Form = ({ Setinfo, setInfo, info }) => {
   return (
     <form onSubmit={Setinfo}>
-      <div className="w-full flex flex-col items-center justify-center mb-10 h-4/5">
+      <div className="w-full flex flex-col items-center justify-center mb-10 h-4/5 p-4">
         <div className="text-center font-serif md:text-6xl font-bold mb-10 text-4xl">
           Welcome to Restaurant
         </div>
         <div
-          className="flex flex-col bg-gradient-to-r from-red-200 to-slate-300 p-10 rounded-xl font-dance font-bold"
+          className="flex flex-col bg-gradient-to-r from-black to-slate-700 p-10 rounded-xl font-dance font-bold"
           style={{
             border: "1px solid black",
             boxShadow: "4px 4px 4px 6px rgba(0,0,0,0.3)",
           }}
         >
           <p
-            className="text-black rounded-lg"
+            className="text-white rounded-lg"
             style={{
               fontSize: "20px",
               boxShadow: "0 0 6px 6px rgba(100,100,100,0.3)",
@@ -25,7 +25,7 @@ const Form = ({ Setinfo, setInfo, info }) => {
             !!!😊Please Give Your Basic Information😊!!!
           </p>
           <label
-            className="text-center mt-4 text-red-800"
+            className="text-center mt-4 text-zinc-100"
             style={{ fontSize: "25px" }}
           >
             Email
@@ -43,7 +43,7 @@ const Form = ({ Setinfo, setInfo, info }) => {
             }
           />
           <label
-            className="text-center mt-8 text-red-800"
+            className="text-center mt-8 text-zinc-100"
             style={{ fontSize: "25px" }}
           >
             Your Name
