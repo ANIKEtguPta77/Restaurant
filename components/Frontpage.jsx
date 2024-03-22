@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import "../styles/button.css";
 // import "../../styles/pop.css";
 import { useRouter } from "next/navigation";
-import { Card1 } from "./Cardfront";
+import { Card1 } from "./Card1";
 
 const Frontpage = ({ menuitems, buy }) => {
   const router = useRouter();
