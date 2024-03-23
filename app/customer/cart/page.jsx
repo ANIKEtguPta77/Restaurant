@@ -125,7 +125,7 @@ const Page = ({
               className="button"
               onClick={() => {
                 handleToggle();
-                // confirmOrder();
+                confirmOrder();
               }}
             >
               Placed Order→

@@ -25,6 +25,14 @@ const MenuSchema=new Schema({
     imageurl:{
         type:String,
         required:[true,'Item link is Required']
+    },
+    popularity:{
+        type:Number,
+        validate: {
+            validator: Number.isInteger,
+            message: '{VALUE} is not an integer value!'
+        }
+
     }
 });
 

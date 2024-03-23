@@ -67,11 +67,12 @@ const Menu = ({
     sectionRefs[index].current.scrollIntoView({ behavior: "smooth" });
   };
 
-   const handleDelete = async (item) => {
+   const handleDelete = async (item,e) => {
     const isconfirmed = confirm(`Are you sure you want to delete ${item.itemname}`);
 
 
     if (isconfirmed) {
+      
       try {
         await fetch(`/api/item/${item._id}`, {
           method: 'DELETE',
@@ -90,10 +91,11 @@ const Menu = ({
   }
 
 
-  const handleAvailable = async (item) => {
+  const handleAvailable = async (item,e) => {
     const isconfirmed = confirm(`Are you sure you want to make ${item.itemname} ${item.available == true ? 'Unavailable' : 'Available'}`)
 
     if (isconfirmed) {
+     
       try {
         const response = await fetch(`/api/item/${item._id}`, {
           method: 'PATCH',

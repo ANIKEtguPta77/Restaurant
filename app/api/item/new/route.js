@@ -9,7 +9,7 @@ export const POST=async(req,res)=>{
     try{
         await connectToDb();
 
-        
+        const popularity=150
         const newItem=new Menu({
             creator:userID,
             itemname,
@@ -17,6 +17,7 @@ export const POST=async(req,res)=>{
             available,
             category,
             imageurl,
+            popularity,
         })
 
         await newItem.save();
