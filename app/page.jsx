@@ -25,7 +25,7 @@ const Home = () => {
       >
         {menuitems.length !== 0 ? (
           <div className="w-full">
-            <Menu menuitems={menuitems} confirms={false} type="rest" />
+            <Menu menuitems={menuitems} setMenuItems={setMenuItems} confirms={false} type="rest" />
           </div>
         ) : (
           <div className="text-white flex justify-center">
