@@ -6,6 +6,7 @@ import Frontpage from "@components/Frontpage";
 import Loading from "@components/Loading";
 
 const Home = () => {
+
   const [menuitems, setMenuItems] = useState([]);
 
   useEffect(() => {
@@ -17,6 +18,7 @@ const Home = () => {
     fetchItems();
   }, []);
 
+ 
   return (
     <section className="w-full flex-center flex-col">
       <div
@@ -25,10 +27,10 @@ const Home = () => {
       >
         {menuitems.length !== 0 ? (
           <div className="w-full">
-            <Menu menuitems={menuitems} setMenuItems={setMenuItems} confirms={false} type="rest" />
+            <Menu confirms={false} type="rest" />
           </div>
         ) : (
-          <div className="text-white flex justify-center">
+          <div className="text-white flex justify-center items-center h-96">
             <Loading />
           </div>
         )}

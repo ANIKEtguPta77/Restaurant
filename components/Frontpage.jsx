@@ -1,13 +1,25 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 // import "../styles/button.css";
 // import "../../styles/pop.css";
 import { useRouter } from "next/navigation";
 import { Card1 } from "./Card1";
 
-const Frontpage = ({ menuitems, buy }) => {
+const Frontpage = ({ buy }) => {
   const router = useRouter();
   const [showIndex, setShowIndex] = useState(null);
+
+  const [menuitems, setMenuItems] = useState([]);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const response = await fetch("/api/item");
+      const data = await response.json();
+      setMenuItems(data);
+    };
+    fetchItems();
+  }, []);
+
 
   const food_item = ["Dal", "Gravy", "Bread","Sweet"];
 

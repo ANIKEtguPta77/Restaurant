@@ -15,16 +15,7 @@ const page = () => {
   const { data: session } = useSession();
   const [formvisible, setFormVisible] = useState(false);
 
-  const [menuitems, setMenuItems] = useState([]);
-
-  useEffect(() => {
-    const fetchItems = async () => {
-      const response = await fetch("/api/item");
-      const data = await response.json();
-      setMenuItems(data);
-    };
-    fetchItems();
-  }, []);
+  
 
   const ItemAdd = () => {
     setFormVisible(!formvisible);
@@ -206,7 +197,7 @@ const page = () => {
               </div>
             </Paper>
           )}
-          <Menu menuitems={menuitems} setMenuItems={setMenuItems} confirms={false} type="update" />
+          <Menu confirms={false} type="update" />
         </>
       ) : (
         <Loading />

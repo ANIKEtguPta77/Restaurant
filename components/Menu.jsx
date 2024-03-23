@@ -10,8 +10,6 @@ import { useLayoutEffect } from "react";
 import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 
 const Menu = ({
-  menuitems,
-  setMenuItems,
   Counterminus,
   Counterplus,
   submitOrder,
@@ -25,6 +23,22 @@ const Menu = ({
   type,
  
 }) => {
+
+
+  const [menuitems, setMenuItems] = useState([]);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const response = await fetch("/api/item");
+      const data = await response.json();
+      setMenuItems(data);
+    };
+    fetchItems();
+  }, []);
+
+
+
+
   const router = useRouter();
   const [showIndex, setShowIndex] = useState(null);
   const [toggle, setToggle] = useState(false);

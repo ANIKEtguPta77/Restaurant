@@ -13,6 +13,18 @@ import Frontpage from "../../components/Frontpage";
 const page = () => {
   const { data: session } = useSession();
   const [menuitems, setMenuItems] = useState([]);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const response = await fetch("/api/item");
+      const data = await response.json();
+      setMenuItems(data);
+    };
+    fetchItems();
+  }, []);
+
+
+ 
   const [count, setCount] = useState({
     0: 0,
   });
@@ -39,14 +51,7 @@ const page = () => {
     setCheck(true);
   };
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      const response = await fetch("/api/item");
-      const data = await response.json();
-      setMenuItems(data);
-    };
-    fetchItems();
-  }, []);
+ 
 
   const Counterplus = (index) => {
     setCount((prevCounts) => ({
@@ -169,7 +174,7 @@ const page = () => {
               {menuitems.length !== 0 ? (
                 <div className="w-full">
                   <Menu
-                    menuitems={menuitems}
+                    
                     Counterminus={Counterminus}
                     Counterplus={Counterplus}
                     submitOrder={submitOrder}
@@ -192,7 +197,7 @@ const page = () => {
           )}
         </div>
       ) : (
-        <Frontpage menuitems={menuitems} buy={buy} />
+        <Frontpage buy={buy} />
       )}
     </>
   );
