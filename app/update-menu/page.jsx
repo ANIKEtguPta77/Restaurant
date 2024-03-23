@@ -206,7 +206,7 @@ const page = () => {
               </div>
             </Paper>
           )}
-          <Menu menuitems={menuitems} confirms={false} type="update" />
+          <Menu menuitems={menuitems} setMenuItems={setMenuItems} confirms={false} type="update" />
         </>
       ) : (
         <Loading />
