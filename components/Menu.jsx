@@ -11,6 +11,7 @@ import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 
 const Menu = ({
   menuitems,
+  setMenuItems,
   Counterminus,
   Counterplus,
   submitOrder,
@@ -22,8 +23,7 @@ const Menu = ({
   foodcount,
   buy,
   type,
-  handleAvailable,
-  handleDelete,
+ 
 }) => {
   const router = useRouter();
   const [showIndex, setShowIndex] = useState(null);
@@ -53,14 +53,51 @@ const Menu = ({
     sectionRefs[index].current.scrollIntoView({ behavior: "smooth" });
   };
 
-  const [menuitem, setMenuItem] = useState([]);
+   const handleDelete = async (item) => {
+    const isconfirmed = confirm(`Are you sure you want to delete ${item.itemname}`);
 
-  useEffect(() => {
-    const func = () => {
-      setMenuItem(menuitems);
-    };
-    func();
-  }, [menuitems]);
+
+    if (isconfirmed) {
+      try {
+        await fetch(`/api/item/${item._id}`, {
+          method: 'DELETE',
+
+        });
+
+        const filteredPosts = menuitems.filter((p) =>
+          p._id !== item._id
+        );
+
+        setMenuItems(filteredPosts);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+
+  const handleAvailable = async (item) => {
+    const isconfirmed = confirm(`Are you sure you want to make ${item.itemname} ${item.available == true ? 'Unavailable' : 'Available'}`)
+
+    if (isconfirmed) {
+      try {
+        const response = await fetch(`/api/item/${item._id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({
+            available: !item.available
+          })
+        })
+
+        if (response.ok) {
+          location.reload()
+          router.push('/update-menu');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+  }
 
   return (
     <div className="w-full">
@@ -108,7 +145,7 @@ const Menu = ({
                       – {item1} –
                     </p>
                   </div>
-                  {menuitem.map((item, index2) =>
+                  {menuitems.map((item, index2) =>
                     item.category === item1 ? (
                       <div key={index2} className="py-3 w-full mt-2 mb-2">
                         <Card
@@ -170,7 +207,7 @@ const Menu = ({
             Counterminus={Counterminus}
             Counterplus={Counterplus}
             count={count}
-            menuitem={menuitem}
+            menuitem={menuitems}
             buy={buy}
           />
         </div>
