@@ -1,6 +1,6 @@
 import { connectToDb } from "@utils/database";
 import Menu from "@models/menu";
-
+export const dynamic = "force-dynamic";
 export const GET = async (request) => {
     try {
         await connectToDb();
