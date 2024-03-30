@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useRef, useEffect } from "react";
 import Cart from "../app/customer/cart/page";
 import { useRouter } from "next/navigation";
