@@ -1,5 +1,5 @@
 'use client'
-\import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../../../styles/cart.css";
 import { useRouter } from "next/navigation";
 import Card3 from "../../../components/Card3";
