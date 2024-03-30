@@ -6,6 +6,7 @@ import Card3 from "../../../components/Card3";
 import Oops from "@components/Oops";
 import Lottie from "lottie-react";
 import animationData from "../../../components/Animation - 1710692268578.json";
+import Nav from '@components/Nav';
 
 const Page = ({
   confirmOrder,
@@ -55,6 +56,8 @@ const Page = ({
   };
 
   return (
+    <>
+     <Nav type="cus"/>
     <div className="w-full">
       {toggle && <div className="overlay" />}
       {toggle && (
@@ -134,6 +137,7 @@ const Page = ({
         </div>
       )}
     </div>
+    </>
   );
 };
 

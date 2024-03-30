@@ -9,6 +9,7 @@ import Menu from "../../components/Menu";
 import Loading from "@components/Loading";
 import { Card } from "../../components/Card";
 import Frontpage from "../../components/Frontpage";
+import Nav from '@components/Nav';
 
 const page = () => {
   const { data: session } = useSession();
@@ -160,6 +161,7 @@ const page = () => {
 
   return (
     <>
+    <Nav type="cus"/>
       {!first === false ? (
         <div className="w-full overflow-x-hidden">
           {check === false ? (

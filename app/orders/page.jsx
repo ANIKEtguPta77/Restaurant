@@ -7,6 +7,7 @@ import { Paper } from '@mui/material';
 import {motion} from "framer-motion"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { red } from '@mui/material/colors'
+import Nav from '@components/Nav';
 
 const OrderList=({data,handleDeliver,handleFinish})=>{
     return(
@@ -95,6 +96,7 @@ const page = () => {
       
   return (
     <>
+    <Nav type="rest"/>
     {session?.user.id && (
         <Paper 
         className='w-full p-3 rounded-3xl flex flex-col'

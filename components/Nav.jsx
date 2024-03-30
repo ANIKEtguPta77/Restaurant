@@ -8,7 +8,7 @@ import {signIn,signOut,useSession,
 getProviders} from 'next-auth/react'
 
 
-const Nav = () => {
+const Nav = ({type}) => {
 
   const {data:session}=useSession();
 
@@ -39,12 +39,17 @@ const Nav = () => {
             />
             <p className="logo_text">Restuarent Name</p>
         </Link>
+        
         {/*Desktop Navigation*/}
+        {type=="rest"&&
         <div className="sm:flex hidden">
             {session?.user ?(
                 <div className="flex gap-3 md:gap-5">
                     <Link href="/orders" className="black_btn">
                         Orders
+                    </Link>
+                    <Link href="/customer" className="black_btn">
+                        Customer
                     </Link>
                     <Link href="/update-menu" className="black_btn">
                         Update
@@ -81,8 +86,9 @@ const Nav = () => {
                 </>
             )}
         </div>
-
+        }
         {/*Mobile Navigation*/}
+        {type=="rest"&&
         <div className="sm:hidden flex relative">
             {session?.user ?(
                 <div className="flex">
@@ -148,7 +154,7 @@ const Nav = () => {
                 </>
             )}
         </div>
-
+        }
 
     </nav>
   )

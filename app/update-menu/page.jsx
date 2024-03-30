@@ -10,6 +10,7 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import Paper from "@mui/material/Paper";
 import { motion } from "framer-motion";
+import Nav from '@components/Nav';
 
 const page = () => {
   const { data: session } = useSession();
@@ -67,6 +68,7 @@ const page = () => {
 
   return (
     <>
+    <Nav type="rest"/>
       {session?.user.name ? (
         <>
           <div
