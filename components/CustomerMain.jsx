@@ -7,11 +7,11 @@ import { useSession } from "next-auth/react";
 import Form from "@components/Form";
 import Menu from "@components/Menu";
 import Loading from "@components/Loading";
-import Frontpage from "@components/FrontPage";
+import Frontpage from "./Frontpage";
 import Nav from "@components/Nav";
 
 const CustomerMain = ({ menuitems }) => {
-  console.log(menuitems);
+  // console.log(menuitems);
   const [count, setCount] = useState({
     0: 0,
   });

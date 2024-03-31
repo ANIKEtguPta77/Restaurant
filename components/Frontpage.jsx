@@ -7,7 +7,7 @@ const Frontpage = ({ buy,menuitems}) => {
   const router = useRouter();
   const [showIndex, setShowIndex] = useState(null);
 
-  console.log(menuitems,"fornt")
+  // console.log(menuitems,"fornt")
 
 
   const food_item = ["Dal", "Gravy", "Bread","Sweet"];
