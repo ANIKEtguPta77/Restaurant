@@ -1,7 +1,7 @@
 import CustomerMain from "@components/CustomerMain";
 import { connectToDb } from "@utils/database";
 import Menumodel from "@models/menu";
-
+export const dynamic = "force-dynamic";
 async function getItem() {
   try {
     await connectToDb();

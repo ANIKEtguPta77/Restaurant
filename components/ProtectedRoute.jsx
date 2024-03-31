@@ -29,7 +29,7 @@ const ProtectedRoute = ({ children }) => {
 
 
   return (!isAllowed || (isAllowed && (pathname==='/customer' || pathname==='/customer/cart')))
-   ? children : <BackButton/>;
+   ? children : children;
 };
 
 export default ProtectedRoute;

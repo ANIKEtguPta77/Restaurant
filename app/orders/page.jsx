@@ -2,7 +2,7 @@ import OrderMain from "@components/OrderMain";
 import { connectToDb } from "@utils/database";
 import Ordermodel from "@models/order";
 import OrderPage from "@components/OrderPage";
-
+export const dynamic = "force-dynamic";
 async function getOrder() {
     try{
         await connectToDb();

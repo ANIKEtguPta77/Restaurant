@@ -4,7 +4,7 @@ import Loading from "@components/Loading";
 import Nav from "@components/Nav";
 import { connectToDb } from "@utils/database";
 import Menumodel from "@models/menu";
-
+export const dynamic = "force-dynamic";
 async function getItem() {
   try {
     await connectToDb();
