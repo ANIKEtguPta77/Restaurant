@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useRef, useEffect } from "react";
 import Cart from "../app/customer/cart/page";
 import { useRouter } from "next/navigation";
@@ -25,18 +26,8 @@ const Menu = ({
  
 }) => {
 
-
-  // const [menuitems, setMenuItems] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchItems = async () => {
-  //     const response = await fetch("/api/item");
-  //     const data = await response.json();
-  //     setMenuItems(data);
-  //   };
-  //   fetchItems();
-  // }, []);
-
+  
+ 
 
 
 

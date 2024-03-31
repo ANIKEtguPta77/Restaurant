@@ -1,6 +1,3 @@
-// "use client";
-
-// import { useEffect, useState } from "react";
 import Menu from "@components/Menu";
 import Frontpage from "@components/Frontpage";
 import Loading from "@components/Loading";
@@ -25,17 +22,8 @@ async function getItem() {
 
 const Home = async () => {
   const menuitems = await getItem();
-  // const [menuitems, setMenuItems] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchItems = async () => {
-  //     const response = await fetch("/api/item");
-  //     const data = await response.json();
-  //     setMenuItems(data);
-  //   };
-  //   fetchItems();
-  // }, []);
-  console.log(menuitems)
+  
+  // console.log(typeof(menuitems),"app")
   return (
     <section className="w-full flex-center flex-col">
       <Nav type="rest" />

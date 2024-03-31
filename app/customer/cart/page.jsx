@@ -1,4 +1,4 @@
-'use client'
+
 import React, { useState, useEffect } from "react";
 import "../../../styles/cart.css";
 import { useRouter } from "next/navigation";
@@ -19,6 +19,7 @@ const Page = ({
   menuitem,
   buy,
 }) => {
+  
   const router = useRouter();
   const goBack = () => {
     setConfirms(false);
@@ -37,9 +38,9 @@ const Page = ({
     setFoodid(foodIds);
   }, [count]);
 
-  useEffect(()=>{
-    submitOrder();
-  },[count])
+  // useEffect(()=>{
+  //   submitOrder();
+  // },[count])
 
   useEffect(() => {
     let newTotal = 0;
