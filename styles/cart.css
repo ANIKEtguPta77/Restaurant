@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
 
 .parent {
       font-family: McLaren,serif;
@@ -130,8 +131,10 @@
   border-radius: 20px;
   font-size: 4.5vh;
 }
+
+
 .button1{
-  width: 150px;
+  width: 200px;
   height: 50px;
   border: 2px solid #fff;
   color: #ffffff;
@@ -139,14 +142,14 @@
   cursor: pointer;
   vertical-align: auto;
   text-align: center;
-  border-radius:15px;
   background-color: rgba(0, 0, 0, 0);
   font-stretch: ultra-expanded;
-  background-color: rgb(47, 179, 135);
+  background: rgb(31, 60, 93);
   animation-name: buttonAnimation;
-  animation-duration: 2000ms;
+  animation-duration: 4000ms;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+  border-radius: 20px;
 }
 
 .button1:hover{
@@ -222,38 +225,18 @@
       }
      }
 
-.btn {
-  box-sizing: border-box;
-  appearance: none;
-  background-color: transparent;
-  border: 2px solid rgb(0, 0, 0);
-  border-radius: 0.6em;
-  color: rgb(30, 99, 45);
-  cursor: pointer;
-  display: flex;
-  align-self: center;
-  font-weight: 400;
-  line-height: 1;
-  margin: 10px;
-  padding: 0.75em 2em;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: 'Montserrat', cursive;
-  font-weight: 700;
-  &:hover,
-  &:focus {
-    color: #192045;
-    outline: 0;
-  }
-}
 .first {
   border-color: #3498db;
-  color: #fff;
-  box-shadow: 0 0 40px 40px #3b81a1 inset, 0 0 0 0 #3498db;
-  transition: all 150ms easergb(0, 0, 0);      
+  color: #ffffff;
+  box-shadow: 0 0 80px 40px #3b81a1 inset, 0 0 0 0 #3498db;
+  padding: 1em 1em;
+  transition: all 150ms easergb(0, 0, 0);   
+  border-radius: 10px;   
+  font-size: 17px;
   &:hover {
     box-shadow: 0 0 10px 0 #3498db inset, 0 0 6px 4px #3498db;
+    font-size: 16px;
+    color:black;
   }
 }
 
@@ -378,5 +361,76 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+.btn {
+  background: #fbbf24;
+  border: none;
+  color: #111;
+  font: 500 1rem sans-serif;
+  padding: 0.5rem 2.5rem;
+  position: relative;
+  cursor: pointer;
+  margin: 0.4rem;
+}
+
+.btn-animation {
+  border: 2px solid #fbbf24;
+  outline: 2px solid #fff;
+  transition: outline-offset 200ms ease;
+}
+.btn-animation:hover {
+  outline: 2px solid #fff;
+  outline-offset: -6px;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 650px){
+  .btn{
+    padding: 0.4rem 0.7rem;
+  }
+}
+
+.order-summary {
+  flex-grow: 1; /* Grow to fill available space */
+  text-align: center; /* Center align the content */
+}
+
+
+/* .item {
+  width: 10ch; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  font-family:Dance;
+} */
+
+
+.scrolling-wrapper-flexbox {
+  display: flex;
+  gap: 1.5em;
+  overflow-x: auto;
+  .card {
+    flex: 0 0 auto;
+  }
+}
+
+.card {
+  display: grid;
+    background-color: #ffffff;
+    border-radius:10px;
+    color: #15928A;
+    height: 10.8rem;
+    width: 10rem;
+}
+
+.scrolling-wrapper, .scrolling-wrapper-flexbox {
+
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
