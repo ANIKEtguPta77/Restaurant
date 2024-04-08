@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import React from "react";
 import { motion } from "framer-motion";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -55,22 +55,22 @@ export const Card = ({
 
       {type === "cust" && (
         <div className="flex md:ml-0 ml-8 mt-2">
-          <div className="bg-red-500 flex p-1 rounded-xl">
+          <div className="bg-red-200 flex p-1 rounded-xl">
             {count[index2] || 0 ? (
               <button
-                className="px-2 hover:bg-red-400 hover:text-white font-bold rounded-md w-8 border border-white md:mx-4 text-2xl"
+                className="px-1 hover:bg-red-400 hover:text-red-800 font-bold rounded-md w-8 md:mx-1 text-2xl"
                 onClick={() => Counterminus(index2)}
               >
                 {" "}
                 -{" "}
               </button>
             ) : null}
-            <p className="px-2 text-2xl flex items-center text-white">
+            <p className="px-2 text-2xl flex items-center text-red-600">
               {" "}
               {count[index2] || 0}{" "}
             </p>
             <button
-              className=" px-2 hover:bg-red-400 rounded-md w-8 hover:text-white font-bold border border-white md:mx-4 text-2xl"
+              className="px-1 hover:bg-red-400 rounded-md w-8 hover:text-red-600 font-bold md:mx-1 text-2xl"
               onClick={() => Counterplus(index2)}
             >
               {" "}
