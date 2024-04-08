@@ -1,12 +1,12 @@
-'use client'
+"use client";
 import React, { useState, useEffect } from "react";
 import "../../../styles/cart.css";
-import { useRouter } from "next/navigation";
 import Card3 from "../../../components/Card3";
 import Oops from "@components/Oops";
 import Lottie from "lottie-react";
 import animationData from "../../../components/Animation - 1710692268578.json";
-import Nav from '@components/Nav';
+import Back from "../../../components/Back.json";
+import Cardfav from "@components/Cardfav";
 
 const Page = ({
   confirmOrder,
@@ -19,8 +19,6 @@ const Page = ({
   menuitem,
   buy,
 }) => {
-  
-  const router = useRouter();
   const goBack = () => {
     setConfirms(false);
   };
@@ -38,9 +36,9 @@ const Page = ({
     setFoodid(foodIds);
   }, [count]);
 
-  // useEffect(()=>{
-  //   submitOrder();
-  // },[count])
+  useEffect(() => {
+    submitOrder();
+  }, [count]);
 
   useEffect(() => {
     let newTotal = 0;
@@ -57,8 +55,6 @@ const Page = ({
   };
 
   return (
-    <>
-     <Nav type="cus"/>
     <div className="w-full">
       {toggle && <div className="overlay" />}
       {toggle && (
@@ -75,16 +71,16 @@ const Page = ({
       {!toggle && (
         <div
           className="m-4 bg-gradient-to-l from-gray-400 to-slate-500 rounded-2xl p-6"
-          style={{ background: "linear-gradient(to right, #ff9a9e, #fad0c4)" }}
+          style={{ background: "linear-gradient(to right, #ffffff, #f0f0f0)" }}
         >
-          <div className="flex justify-center bg-gradient-to-b from-gray-600 to-indigo-400 rounded-lg p-4 md:text-6xl text-4xl font-dance font-bold text-white shadow-2xl mb-6">
-            Order Summary
-          </div>
-          <div>
-            <button onClick={() => goBack()} className="btn">
-              ←Back
+          <div className="flex justify-between items-center bg-gradient-to-b from-gray-700 to-gray-400 rounded-lg p-4 md:text-6xl text-4xl font-dance font-bold text-white shadow-2xl mb-6">
+            <button onClick={() => goBack()} className="w-12">
+              <Lottie animationData={Back} className="lottie-animation" />
             </button>
+            <div className="order-summary">Order Summary</div>
+            <div></div>
           </div>
+
           <div>
             {foodid.length !== 0 ? (
               <div>
@@ -119,9 +115,46 @@ const Page = ({
               </div>
             )}
           </div>
+
+          <div className="w-full h-0.5 bg-gray-300 my-6"></div>
+          <div className="mt-10 flex justify-center text-3xl text-white  bg-gradient-to-b from-gray-700 to-zinc-400 rounded-lg p-2 md:text-4xl font-dance font-bold  shadow-2xl mb-4">
+            Top Rated
+          </div>
+          <div>
+            <div className="root w-full">
+              <div className="scrolling-wrapper-flexbox">
+                {menuitem &&
+                  menuitem.map(
+                    (item, index) =>
+                      item.popularity >= 200 && (
+                        <Cardfav
+                          key={index}
+                          itemprice={item.itemprice}
+                          popularity={item.popularity}
+                          url={item.imageurl}
+                          itemname={item.itemname}
+                        />
+                      )
+                  )}
+              </div>
+            </div>
+          </div>
           <div className="flex justify-center">
-            <p className="bg-slate-100 mt-6 p-3 w-11/12 flex justify-center text-2xl font-dance font-bold rounded-2xl">
-              Total Price: {total}
+            <p className="bg-zinc-200 mt-6 p-3 w-10/12 md:w-1/2 md:1/2 text-2xl font-mukta rounded-2xl">
+              <div className="flex justify-between">
+                <p>Total Price</p>
+                <p>₹ {total}</p>
+              </div>
+              <div className="flex justify-between">
+              <p>Total Discount</p>
+                <p>24%</p>
+              </div>
+              <div></div>
+              <div className="w-full bg-gray-300 h-0.5"></div>
+              <div className="flex justify-between">
+                <p>Total</p>
+                <p>₹ {total}</p>
+              </div>
             </p>
           </div>
           <div className="flex justify-center mt-8 mb-4">
@@ -129,16 +162,16 @@ const Page = ({
               className="button"
               onClick={() => {
                 handleToggle();
-                confirmOrder();
+                // confirmOrder();
               }}
             >
-              Placed Order→
+              Placed Order
+
             </button>
           </div>
         </div>
       )}
     </div>
-    </>
   );
 };
 
