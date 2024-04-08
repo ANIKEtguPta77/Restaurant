@@ -6,8 +6,7 @@ import Oops from "@components/Oops";
 import Lottie from "lottie-react";
 import animationData from "../../../components/Animation - 1710692268578.json";
 import Back from "../../../components/Back.json";
-import Cardfav from "@components/Cardfav";
-
+import Cardfav from "../../../components/Cardfav";
 const Page = ({
   confirmOrder,
   setConfirms,
