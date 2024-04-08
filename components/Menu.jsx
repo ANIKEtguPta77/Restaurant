@@ -1,7 +1,7 @@
-'use client'
+"use client";
 import React, { useState, useRef, useEffect } from "react";
 import Cart from "../app/customer/cart/page";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Card } from "./Card";
 import { FiAlignJustify } from "react-icons/fi";
 import Option from "./Option";
@@ -9,6 +9,8 @@ import { FiArrowRightCircle } from "react-icons/fi";
 import { ImCross } from "react-icons/im";
 import { useLayoutEffect } from "react";
 import { MdOutlineShoppingCartCheckout } from "react-icons/md";
+import Back from "../components/Back.json";
+import Lottie from "lottie-react";
 
 const Menu = ({
   Counterminus,
@@ -22,19 +24,22 @@ const Menu = ({
   foodcount,
   buy,
   type,
-  menuitems
- 
 }) => {
+  const [menuitems, setMenuItems] = useState([]);
 
-  
- 
-
-
+  useEffect(() => {
+    const fetchItems = async () => {
+      const response = await fetch("/api/item");
+      const data = await response.json();
+      setMenuItems(data);
+    };
+    fetchItems();
+  }, []);
 
   const router = useRouter();
   const [showIndex, setShowIndex] = useState(null);
   const [toggle, setToggle] = useState(false);
-  const food_item = ["Dal", "Gravy", "Bread", "Sweet"];
+  const food_item = ["Dal", "Gravy", "Bread", "Sweet", "Chicken"];
   const sectionRefs = food_item.map(() => useRef());
   const handleToggle = () => {
     setToggle(!toggle);
@@ -59,53 +64,51 @@ const Menu = ({
     sectionRefs[index].current.scrollIntoView({ behavior: "smooth" });
   };
 
-   const handleDelete = async (item,e) => {
-    const isconfirmed = confirm(`Are you sure you want to delete ${item.itemname}`);
-
+  const handleDelete = async (item, e) => {
+    const isconfirmed = confirm(
+      `Are you sure you want to delete ${item.itemname}`
+    );
 
     if (isconfirmed) {
-      
       try {
         await fetch(`/api/item/${item._id}`, {
-          method: 'DELETE',
-
+          method: "DELETE",
         });
 
-        const filteredPosts = menuitems.filter((p) =>
-          p._id !== item._id
-        );
+        const filteredPosts = menuitems.filter((p) => p._id !== item._id);
 
         setMenuItems(filteredPosts);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
-  }
+  };
 
-
-  const handleAvailable = async (item,e) => {
-    const isconfirmed = confirm(`Are you sure you want to make ${item.itemname} ${item.available == true ? 'Unavailable' : 'Available'}`)
+  const handleAvailable = async (item, e) => {
+    const isconfirmed = confirm(
+      `Are you sure you want to make ${item.itemname} ${
+        item.available == true ? "Unavailable" : "Available"
+      }`
+    );
 
     if (isconfirmed) {
-     
       try {
         const response = await fetch(`/api/item/${item._id}`, {
-          method: 'PATCH',
+          method: "PATCH",
           body: JSON.stringify({
-            available: !item.available
-          })
-        })
+            available: !item.available,
+          }),
+        });
 
         if (response.ok) {
-          location.reload()
-          router.push('/update-menu');
+          location.reload();
+          router.push("/update-menu");
         }
       } catch (error) {
         console.log(error);
       }
     }
-
-  }
+  };
 
   return (
     <div className="w-full">
@@ -124,18 +127,14 @@ const Menu = ({
               <Option food_item={food_item} scrollToSection={scrollToSection} />
             </div>
           )}
-          <div className="mb-8">
+
+          <div className="flex justify-between  p-6 rounded-xl bg-gradient-to-r from-green-100 to-red-100 text-black md:text-8xl text-6xl font-dance items-center">
             {type === "cust" && (
-              <button
-                className="bg-blue-700 px-4 text-white rounded-xl hover:bg-blue-900 shadow hover:px-5 hover:py-1"
-                onClick={() => buy()}
-              >
-                ← Back
+              <button className="w-14" onClick={() => buy()}>
+                <Lottie animationData={Back} className="lottie-animation" />
               </button>
             )}
-          </div>
-          <div className="flex justify-center p-6 rounded-xl bg-gradient-to-r from-green-100 to-red-100 text-black md:text-8xl text-6xl font-dance">
-            Menu Items
+            <div className="order-summary">Menu Items</div>
           </div>
           <br></br>
           <div className="rounded-xl md:p-4 ">
@@ -153,29 +152,30 @@ const Menu = ({
                       – {item1} –
                     </p>
                   </div>
-                  {menuitems.map((item, index2) =>
-                    item.category === item1 ? (
-                      <div key={index2} className="py-3 w-full mt-2 mb-2">
-                        <Card
-                          itemname={item.itemname}
-                          itemprice={item.itemprice}
-                          available={item.available}
-                          url={item.imageurl}
-                          Counterplus={Counterplus}
-                          Counterminus={Counterminus}
-                          count={count}
-                          index2={index2}
-                          type={type}
-                          handleDelete={() =>
-                            handleDelete && handleDelete(item)
-                          }
-                          handleAvailable={() =>
-                            handleAvailable && handleAvailable(item)
-                          }
-                        />
-                      </div>
-                    ) : null
-                  )}
+                  {menuitems &&
+                    menuitems.map((item, index2) =>
+                      item.category === item1 ? (
+                        <div key={index2} className="py-3 w-full mt-2 mb-2">
+                          <Card
+                            itemname={item.itemname}
+                            itemprice={item.itemprice}
+                            available={item.available}
+                            url={item.imageurl}
+                            Counterplus={Counterplus}
+                            Counterminus={Counterminus}
+                            count={count}
+                            index2={index2}
+                            type={type}
+                            handleDelete={() =>
+                              handleDelete && handleDelete(item)
+                            }
+                            handleAvailable={() =>
+                              handleAvailable && handleAvailable(item)
+                            }
+                          />
+                        </div>
+                      ) : null
+                    )}
                 </section>
                 <br></br>
               </div>
@@ -183,7 +183,10 @@ const Menu = ({
           </div>
           <div className="button-container mt-4 text-2xl mb-10">
             {type === "cust" && (
-              <button className="btn first" onClick={submitOrder}>
+              <button
+                className="first text-2xl font-bold"
+                onClick={submitOrder}
+              >
                 Confirm Order
               </button>
             )}
