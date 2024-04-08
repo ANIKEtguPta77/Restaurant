@@ -16,6 +16,7 @@ module.exports = {
         'space': ['Space Grotesk', 'sans-serif'],
         'kal':[ "Kalnia", 'serif'],
         'dance':["Dancing Script","cursive"],
+        'mukta':["Mukta",'sans-serif'],
       },
       colors: {
         'primary-orange': '#FF5722',
