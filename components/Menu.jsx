@@ -24,17 +24,18 @@ const Menu = ({
   foodcount,
   buy,
   type,
+  menuitems
 }) => {
-  const [menuitems, setMenuItems] = useState([]);
+  // const [menuitems, setMenuItems] = useState([]);
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      const response = await fetch("/api/item");
-      const data = await response.json();
-      setMenuItems(data);
-    };
-    fetchItems()
-  }, []);
+  // useEffect(() => {
+  //   const fetchItems = async () => {
+  //     const response = await fetch("/api/item");
+  //     const data = await response.json();
+  //     setMenuItems(data);
+  //   };
+  //   fetchItems()
+  // }, []);
 
   const router = useRouter();
   const [showIndex, setShowIndex] = useState(null);
