@@ -33,7 +33,7 @@ const Menu = ({
       const data = await response.json();
       setMenuItems(data);
     };
-    fetchItems();
+    fetchItems()
   }, []);
 
   const router = useRouter();
